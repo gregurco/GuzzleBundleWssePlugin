@@ -2,6 +2,9 @@
 
 namespace Gregurco\Bundle\EightPointsGuzzleWssePlugin;
 
+namespace Gregurco\Bundle\EightPointsGuzzleWssePlugin;
+
+use EightPoints\Bundle\GuzzleBundle\EightPointsGuzzlePlugin;
 use Gregurco\Bundle\EightPointsGuzzleWssePlugin\DependencyInjection\GuzzleWsseExtension;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -9,13 +12,13 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\ExpressionLanguage\Expression;
 
-class EightPointsGuzzleWssePlugin extends Bundle
+class EightPointsGuzzleWssePlugin extends Bundle implements EightPointsGuzzlePlugin
 {
     /**
      * @param array $configs
      * @param ContainerBuilder $container
      */
-    public function load(array $configs, ContainerBuilder $container) : void
+    public function load(array $configs, ContainerBuilder $container)
     {
         $extension = new GuzzleWsseExtension();
         $extension->load($configs, $container);
@@ -58,7 +61,7 @@ class EightPointsGuzzleWssePlugin extends Bundle
     /**
      * @param ArrayNodeDefinition $pluginNode
      */
-    public function addConfiguration(ArrayNodeDefinition $pluginNode) : void
+    public function addConfiguration(ArrayNodeDefinition $pluginNode)
     {
         $pluginNode
             ->addDefaultsIfNotSet()
