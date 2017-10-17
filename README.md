@@ -1,6 +1,6 @@
 Guzzle WSSE Plugin
 ==================
-This plugin integrates [WSSE][1] functionality into Guzzle, a PHP framework for building RESTful web service clients.
+This plugin integrates [WSSE][1] functionality into Guzzle Bundle, a bundle for building RESTful web service clients.
 
 
 Requirements
@@ -16,7 +16,7 @@ Using [composer][3]:
 ``` json
 {
     "require": {
-        "gregurco/guzzle-wsse-plugin": "dev-master"
+        "gregurco/guzzle-bundle-wsse-plugin": "dev-master"
     }
 }
 ```
