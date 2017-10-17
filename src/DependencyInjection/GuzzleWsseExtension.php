@@ -1,6 +1,6 @@
 <?php
 
-namespace Gregurco\Bundle\EightPointsGuzzleBundleWssePlugin\DependencyInjection;
+namespace Gregurco\Bundle\GuzzleBundleWssePlugin\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;

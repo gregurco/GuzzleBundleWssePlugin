@@ -1,6 +1,6 @@
 <?php
 
-namespace Gregurco\Bundle\EightPointsGuzzleBundleWssePlugin\Middleware;
+namespace Gregurco\Bundle\GuzzleBundleWssePlugin\Middleware;
 
 use Psr\Http\Message\RequestInterface;
 
