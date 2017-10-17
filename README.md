@@ -27,7 +27,7 @@ Usage
 Load plugin in AppKernel.php:
 ``` php
 new EightPoints\Bundle\GuzzleBundle\GuzzleBundle([
-    new Gregurco\Bundle\EightPointsGuzzleWssePlugin\EightPointsGuzzleWssePlugin(),
+    new Gregurco\Bundle\EightPointsGuzzleBundleWssePlugin\EightPointsGuzzleBundleWssePlugin(),
 ])
 ```
 
@@ -35,7 +35,7 @@ new EightPoints\Bundle\GuzzleBundle\GuzzleBundle([
 ``` php
 <?php 
 
-$wsse = new \Gregurco\Bundle\EightPointsGuzzleWssePlugin\Middleware\WsseAuthMiddleware($username, $password);
+$wsse = new \Gregurco\Bundle\EightPointsGuzzleBundleWssePlugin\Middleware\WsseAuthMiddleware($username, $password);
 
 # Optional: Set createdAt by a expression (if not, current time will be used automatically)
 # http://php.net/manual/en/datetime.formats.relative.php

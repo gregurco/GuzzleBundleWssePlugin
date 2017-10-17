@@ -1,9 +1,9 @@
 {
-    "name":        "gregurco/guzzle-wsse-plugin",
+    "name":        "gregurco/guzzle-bundle-wsse-plugin",
     "type":        "library",
     "description": "WSSE Plugin for Guzzle, a PHP HTTP client library and framework for building RESTful web service clients",
     "keywords":    ["wsse", "middleware", "plugin", "framework", "http", "rest", "web service", "curl", "client", "HTTP client"],
-    "homepage":    "https://github.com/gregurco/EightPointsGuzzleWssePlugin",
+    "homepage":    "https://github.com/gregurco/EightPointsGuzzleBundleWssePlugin",
     "license":     "MIT",
 
     "authors": [
@@ -14,7 +14,7 @@
         },
         {
             "name":     "Community",
-            "homepage": "https://github.com/gregurco/EightPointsGuzzleWssePlugin/contributors"
+            "homepage": "https://github.com/gregurco/GuzzleBundleWssePlugin/contributors"
         }
     ],
 
@@ -37,7 +37,7 @@
 
     "autoload": {
         "psr-4": {
-            "Gregurco\\Bundle\\EightPointsGuzzleWssePlugin\\": "src"
+            "Gregurco\\Bundle\\EightPointsGuzzleBundleWssePlugin\\": "src"
         }
     }
 }
