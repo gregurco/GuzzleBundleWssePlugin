@@ -32,20 +32,8 @@ class GuzzleBundleWssePlugin extends Bundle implements EightPointsGuzzleBundlePl
     public function loadForClient(array $config, ContainerBuilder $container, string $clientName, Definition $handler)
     {
         if ($config['username'] && $config['password']) {
-            $username = $config['username'];
-            $password = $config['password'];
-            $createdAtExpression = null;
-
-            if (isset($config['created_at']) && $config['created_at']) {
-                $createdAtExpression = $config['created_at'];
-            }
-
             $wsse = new Definition('%eight_points_guzzle.middleware.wsse.class%');
-            $wsse->setArguments([$username, $password]);
-
-            if ($createdAtExpression) {
-                $wsse->addMethodCall('setCreatedAtTimeExpression', [$createdAtExpression]);
-            }
+            $wsse->setArguments([$config['username'], $config['password'], $config['created_at']]);
 
             $wsseServiceName = sprintf('eight_points_guzzle.middleware.wsse.%s', $clientName);
 
@@ -65,9 +53,9 @@ class GuzzleBundleWssePlugin extends Bundle implements EightPointsGuzzleBundlePl
         $pluginNode
             ->addDefaultsIfNotSet()
             ->children()
-                ->scalarNode('username')->defaultFalse()->end()
-                ->scalarNode('password')->defaultValue('')->end()
-                ->scalarNode('created_at')->defaultFalse()->end()
+                ->scalarNode('username')->defaultNull()->end()
+                ->scalarNode('password')->defaultNull()->end()
+                ->scalarNode('created_at')->defaultNull()->end()
             ->end();
     }
 

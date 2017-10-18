@@ -31,17 +31,31 @@ new EightPoints\Bundle\GuzzleBundle\EightPointsGuzzleBundle([
 ])
 ```
 
+Configuration in config.yml:
+``` yaml
+eight_points_guzzle:
+    clients:
+        api_payment:
+            base_url: "http://api.domain.tld"
 
+            # define headers, options
+
+            # plugin settings
+            plugin:
+                wsse:
+                    username:   "acme"
+                    password:   "pa55w0rd"
+                    created_at: "-10 seconds" # optional
+```
+
+Or use with guzzle directly:
 ``` php
 <?php 
-
-$wsse = new \Gregurco\Bundle\GuzzleBundleWssePlugin\Middleware\WsseAuthMiddleware($username, $password);
-
-# Optional: Set createdAt by a expression (if not, current time will be used automatically)
+# Optional: Set third parameter by a expression (if not, current time will be used automatically)
 # http://php.net/manual/en/datetime.formats.relative.php
 # Useful if there is a small difference of time between client and server
 # DateTime object will be regenerated for every request
-$wsse->setCreatedAtTimeExpression('-10 seconds');
+$wsse = new \Gregurco\Bundle\GuzzleBundleWssePlugin\Middleware\WsseAuthMiddleware($username, $password);
 
 $stack = \GuzzleHttp\HandlerStack::create();
 
