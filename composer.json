@@ -1,7 +1,7 @@
 {
     "name":        "gregurco/guzzle-bundle-wsse-plugin",
     "type":        "library",
-    "description": "WSSE Plugin for Guzzle, a PHP HTTP client library and framework for building RESTful web service clients",
+    "description": "WSSE Plugin for Guzzle Bundle, a PHP HTTP client library and framework for building RESTful web service clients",
     "keywords":    ["wsse", "middleware", "plugin", "framework", "http", "rest", "web service", "curl", "client", "HTTP client"],
     "homepage":    "https://github.com/gregurco/GuzzleBundleWssePlugin",
     "license":     "MIT",

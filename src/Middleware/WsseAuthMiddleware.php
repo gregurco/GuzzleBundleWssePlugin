@@ -5,26 +5,18 @@ namespace Gregurco\Bundle\GuzzleBundleWssePlugin\Middleware;
 use Psr\Http\Message\RequestInterface;
 
 /**
- * Adds WSSE auth headers based on http://www.xml.com/pub/a/2003/12/17/dive.html
- *
- * @version   2.0
- * @since     2013-10
+ * Adds WSSE auth headers to request
+ * Based on http://www.xml.com/pub/a/2003/12/17/dive.html
  */
 class WsseAuthMiddleware
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $username;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $password;
 
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     protected $createdAt;
 
     /**

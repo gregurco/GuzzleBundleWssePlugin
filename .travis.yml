@@ -10,7 +10,6 @@ env:
 
 before-install:
     - composer self-update
-    - composer config --global github-oauth.github.com ${GITHUB_TOKEN}
 
 install:
     - composer config --global github-oauth.github.com ${GITHUB_TOKEN}
