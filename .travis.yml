@@ -1,0 +1,22 @@
+language: php
+
+php:
+    - 7.0
+    - 7.1
+
+env:
+    - SYMFONY_VERSION=3.2.*
+    - SYMFONY_VERSION=3.3.*
+
+before-install:
+    - composer self-update
+
+install:
+    - composer install
+
+script:
+    - ./vendor/bin/phpunit --coverage-text
+
+notifications:
+    email:
+        - "gregurco.vlad@gmail.com"
