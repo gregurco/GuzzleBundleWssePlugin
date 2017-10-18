@@ -21,7 +21,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url":  "git@github.com:gregurco/GuzzleBundle.git"
+            "url":  "https://github.com/gregurco/GuzzleBundle.git"
         }
     ],
 
