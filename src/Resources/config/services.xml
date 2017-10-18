@@ -4,6 +4,6 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-		<parameter key="eight_points_guzzle.middleware.wsse.class">Gregurco\Bundle\GuzzleBundleWssePlugin\Middleware\WsseAuthMiddleware</parameter>
+		<parameter key="guzzle_bundle_wsse_plugin.middleware.wsse.class">Gregurco\Bundle\GuzzleBundleWssePlugin\Middleware\WsseAuthMiddleware</parameter>
     </parameters>
 </container>

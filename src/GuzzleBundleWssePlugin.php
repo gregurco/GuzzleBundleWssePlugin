@@ -32,10 +32,10 @@ class GuzzleBundleWssePlugin extends Bundle implements EightPointsGuzzleBundlePl
     public function loadForClient(array $config, ContainerBuilder $container, string $clientName, Definition $handler)
     {
         if ($config['username'] && $config['password']) {
-            $wsse = new Definition('%eight_points_guzzle.middleware.wsse.class%');
+            $wsse = new Definition('%guzzle_bundle_wsse_plugin.middleware.wsse.class%');
             $wsse->setArguments([$config['username'], $config['password'], $config['created_at']]);
 
-            $wsseServiceName = sprintf('eight_points_guzzle.middleware.wsse.%s', $clientName);
+            $wsseServiceName = sprintf('guzzle_bundle_wsse_plugin.middleware.wsse.%s', $clientName);
 
             $container->setDefinition($wsseServiceName, $wsse);
 

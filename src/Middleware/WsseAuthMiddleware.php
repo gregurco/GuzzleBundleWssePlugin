@@ -29,7 +29,7 @@ class WsseAuthMiddleware
      * @param string $password
      * @param string|null $createdAt
      */
-    public function __construct($username, $password, $createdAt)
+    public function __construct($username, $password, $createdAt = null)
     {
         $this->username = $username;
         $this->password = $password;
@@ -63,12 +63,13 @@ class WsseAuthMiddleware
     /**
      * Add WSSE auth headers to Request
      *
-     * @return callable
      * @throws \InvalidArgumentException
+     *
+     * @return \Closure
      */
-    public function attach()
+    public function attach() : \Closure
     {
-        return function (callable $handler) {
+        return function (callable $handler) :  \Closure {
 
             return function (RequestInterface $request, array $options) use ($handler) {
 
