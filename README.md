@@ -1,4 +1,4 @@
-Guzzle WSSE Plugin
+Guzzle Bundle WSSE Plugin
 ==================
 This plugin integrates [WSSE][1] functionality into Guzzle Bundle, a bundle for building RESTful web service clients.
 
