@@ -3,7 +3,7 @@
 namespace Gregurco\Bundle\GuzzleBundleWssePlugin;
 
 
-use EightPoints\Bundle\GuzzleBundle\EightPointsGuzzlePlugin;
+use EightPoints\Bundle\GuzzleBundle\EightPointsGuzzleBundlePlugin;
 use Gregurco\Bundle\GuzzleBundleWssePlugin\DependencyInjection\GuzzleWsseExtension;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\ExpressionLanguage\Expression;
 
-class GuzzleBundleWssePlugin extends Bundle implements EightPointsGuzzlePlugin
+class GuzzleBundleWssePlugin extends Bundle implements EightPointsGuzzleBundlePlugin
 {
     /**
      * @param array $configs

@@ -32,12 +32,19 @@
         "symfony/dependency-injection": "~2.3|~3.0",
         "symfony/expression-language":  "~2.3|~3.0",
         "symfony/http-kernel":          "~2.3|~3.0",
-        "symfony/config":               "~2.3|~3.0"
+        "symfony/config":               "~2.3|~3.0",
+        "phpunit/phpunit":              "~6.1"
     },
 
     "autoload": {
         "psr-4": {
             "Gregurco\\Bundle\\GuzzleBundleWssePlugin\\": "src"
+        }
+    },
+
+    "autoload-dev": {
+        "psr-4": {
+            "Gregurco\\Bundle\\GuzzleBundleWssePlugin\\Tests\\": "tests"
         }
     }
 }
