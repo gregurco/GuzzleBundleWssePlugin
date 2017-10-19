@@ -1,5 +1,8 @@
 Guzzle Bundle WSSE Plugin
 ==================
+
+[![Build Status](https://travis-ci.org/gregurco/GuzzleBundleWssePlugin.svg?branch=init)](https://travis-ci.org/gregurco/GuzzleBundleWssePlugin) [![Coverage Status](https://coveralls.io/repos/gregurco/GuzzleBundleWssePlugin/badge.svg?branch=init)](https://coveralls.io/r/gregurco/GuzzleBundleWssePlugin)
+
 This plugin integrates [WSSE][1] functionality into Guzzle Bundle, a bundle for building RESTful web service clients.
 
 
