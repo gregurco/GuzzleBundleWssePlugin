@@ -4,26 +4,36 @@ namespace Gregurco\Bundle\GuzzleBundleWssePlugin\Test;
 
 use EightPoints\Bundle\GuzzleBundle\EightPointsGuzzleBundlePlugin;
 use Gregurco\Bundle\GuzzleBundleWssePlugin\GuzzleBundleWssePlugin;
-use PHPUnit\Framework\TestCase;
+use Gregurco\Bundle\GuzzleBundleWssePlugin\Middleware\WsseAuthMiddleware;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use PHPUnit\Framework\TestCase;
 
 class GuzzleBundleWssePluginTest extends TestCase
 {
-    public function testMainClassInstance()
-    {
-        $plugin = new GuzzleBundleWssePlugin();
+    /** @var GuzzleBundleWssePlugin */
+    protected $plugin;
 
-        $this->assertInstanceOf(EightPointsGuzzleBundlePlugin::class, $plugin);
-        $this->assertInstanceOf(Bundle::class, $plugin);
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->plugin = new GuzzleBundleWssePlugin();
+    }
+
+    public function testSubClassesOfPlugin()
+    {
+        $this->assertInstanceOf(EightPointsGuzzleBundlePlugin::class, $this->plugin);
+        $this->assertInstanceOf(Bundle::class, $this->plugin);
     }
 
     public function testAddConfiguration()
     {
         $arrayNode = new ArrayNodeDefinition('node');
 
-        $plugin = new GuzzleBundleWssePlugin();
-        $plugin->addConfiguration($arrayNode);
+        $this->plugin->addConfiguration($arrayNode);
 
         $node = $arrayNode->getNode();
 
@@ -37,6 +47,33 @@ class GuzzleBundleWssePluginTest extends TestCase
 
     public function testGetPluginName()
     {
-        $this->assertEquals('wsse', (new GuzzleBundleWssePlugin())->getPluginName());
+        $this->assertEquals('wsse', $this->plugin->getPluginName());
+    }
+
+    public function testLoad()
+    {
+        $container = new ContainerBuilder();
+
+        $this->plugin->load([], $container);
+
+        $this->assertTrue($container->hasParameter('guzzle_bundle_wsse_plugin.middleware.wsse.class'));
+        $this->assertEquals(
+            WsseAuthMiddleware::class,
+            $container->getParameter('guzzle_bundle_wsse_plugin.middleware.wsse.class')
+        );
+    }
+
+    public function testLoadForClient()
+    {
+        $handler = new Definition();
+        $container = new ContainerBuilder();
+
+        $this->plugin->loadForClient(
+            ['username' => 'acme', 'password' => 'pa55w0rd', 'created_at' => null],
+            $container, 'api_payment', $handler
+        );
+
+        $this->assertTrue($container->hasDefinition('guzzle_bundle_wsse_plugin.middleware.wsse.api_payment'));
+        $this->assertCount(1, $handler->getMethodCalls());
     }
 }
