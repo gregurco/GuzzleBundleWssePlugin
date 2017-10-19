@@ -1,6 +1,12 @@
 # Ignore potentially sensitive phpunit file
-phpunit.xml
+/phpunit.xml
 
 # Ignore composer generated files
-composer.lock
-vendor/
+/composer.lock
+/vendor/
+
+# Ignore IDE folder
+/.idea/
+
+# Ignore generated files
+/build/

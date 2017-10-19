@@ -22,10 +22,11 @@ install:
     - composer install
 
 script:
-    - ./vendor/bin/phpunit --coverage-text
+    - mkdir -p build/logs
+    - php vendor/bin/phpunit -c phpunit.xml.dist --coverage-text
 
-after_script:
-  - vendor/bin/coveralls -vvv
+after_success:
+  - travis_retry php vendor/bin/coveralls
 
 notifications:
     email:
