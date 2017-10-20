@@ -34,12 +34,13 @@ class WsseAuthMiddlewareTest extends TestCase
 
         $this->assertInstanceOf(\Closure::class, $result);
 
-        /** @var Request $request */
         $request = new Request('GET', 'test.com');
-        $request = $result($request, []);
+        /** @var Request $requestAfterHandler */
+        $requestAfterHandler = $result($request, []);
 
-        $this->assertTrue($request->hasHeader('X-WSSE'));
-        $this->assertTrue($request->hasHeader('Authorization'));
-        $this->assertEquals('WSSE profile="UsernameToken"', $request->getHeaderLine('Authorization'));
+        $this->assertNotSame($requestAfterHandler, $request);
+        $this->assertTrue($requestAfterHandler->hasHeader('X-WSSE'));
+        $this->assertTrue($requestAfterHandler->hasHeader('Authorization'));
+        $this->assertEquals('WSSE profile="UsernameToken"', $requestAfterHandler->getHeaderLine('Authorization'));
     }
 }
