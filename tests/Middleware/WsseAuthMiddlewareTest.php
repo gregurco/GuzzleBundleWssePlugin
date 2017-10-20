@@ -4,8 +4,8 @@ namespace Gregurco\Bundle\GuzzleBundleWssePlugin\Test\Middleware;
 
 use Gregurco\Bundle\GuzzleBundleWssePlugin\Middleware\WsseAuthMiddleware;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Request;
 use PHPUnit\Framework\TestCase;
-use Psr\Http\Message\RequestInterface;
 
 class WsseAuthMiddlewareTest extends TestCase
 {
@@ -26,14 +26,20 @@ class WsseAuthMiddlewareTest extends TestCase
         $this->assertInstanceOf(\Closure::class, $attachResult);
 
         $handler = $this->getMockBuilder(HandlerStack::class)->getMock();
-        $handler->method('__invoke')->willReturn('');
+        $handler->method('__invoke')->will($this->returnCallback(function(Request $request) : Request {
+            return $request;
+        }));
 
         $result = $attachResult($handler);
 
         $this->assertInstanceOf(\Closure::class, $result);
 
-        $request = $this->getMockBuilder(RequestInterface::class)->getMock();
-        $request->expects($this->exactly(2))->method('withHeader')->willReturnSelf();
-        $result($request, []);
+        /** @var Request $request */
+        $request = new Request('GET', 'test.com');
+        $request = $result($request, []);
+
+        $this->assertTrue($request->hasHeader('X-WSSE'));
+        $this->assertTrue($request->hasHeader('Authorization'));
+        $this->assertEquals('WSSE profile="UsernameToken"', $request->getHeaderLine('Authorization'));
     }
 }

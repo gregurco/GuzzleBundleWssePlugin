@@ -75,5 +75,25 @@ class GuzzleBundleWssePluginTest extends TestCase
 
         $this->assertTrue($container->hasDefinition('guzzle_bundle_wsse_plugin.middleware.wsse.api_payment'));
         $this->assertCount(1, $handler->getMethodCalls());
+
+        $clientMiddlewareDefinition = $container->getDefinition('guzzle_bundle_wsse_plugin.middleware.wsse.api_payment');
+        $this->assertCount(3, $clientMiddlewareDefinition->getArguments());
+        $this->assertEquals('acme', $clientMiddlewareDefinition->getArgument(0));
+        $this->assertEquals('pa55w0rd', $clientMiddlewareDefinition->getArgument(1));
+        $this->assertNull($clientMiddlewareDefinition->getArgument(2));
+    }
+
+    public function testLoadForClientWithoutData()
+    {
+        $handler = new Definition();
+        $container = new ContainerBuilder();
+
+        $this->plugin->loadForClient(
+            ['username' => null, 'password' => null, 'created_at' => null],
+            $container, 'api_payment', $handler
+        );
+
+        $this->assertFalse($container->hasDefinition('guzzle_bundle_wsse_plugin.middleware.wsse.api_payment'));
+        $this->assertCount(0, $handler->getMethodCalls());
     }
 }
