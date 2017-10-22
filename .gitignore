@@ -5,8 +5,5 @@
 /composer.lock
 /vendor/
 
-# Ignore IDE folder
-/.idea/
-
 # Ignore generated files
 /build/
