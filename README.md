@@ -74,5 +74,5 @@ License
 This middleware is licensed under the MIT License - see the LICENSE file for details
 
 [1]: http://www.xml.com/pub/a/2003/12/17/dive.html
-[2]: https://github.com/8p/GuzzleBundle
+[2]: https://github.com/8p/EightPointsGuzzleBundle
 [3]: https://getcomposer.org/
