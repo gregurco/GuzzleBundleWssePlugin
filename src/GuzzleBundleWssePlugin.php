@@ -41,7 +41,7 @@ class GuzzleBundleWssePlugin extends Bundle implements EightPointsGuzzleBundlePl
 
             $wsseExpression = new Expression(sprintf('service("%s").attach()', $wsseServiceName));
 
-            $handler->addMethodCall('push', [$wsseExpression]);
+            $handler->addMethodCall('push', [$wsseExpression, 'wsse']);
         }
     }
 
