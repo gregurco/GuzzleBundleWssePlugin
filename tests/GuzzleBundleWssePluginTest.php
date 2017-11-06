@@ -8,6 +8,7 @@ use Gregurco\Bundle\GuzzleBundleWssePlugin\Middleware\WsseAuthMiddleware;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use PHPUnit\Framework\TestCase;
 
@@ -75,6 +76,11 @@ class GuzzleBundleWssePluginTest extends TestCase
 
         $this->assertTrue($container->hasDefinition('guzzle_bundle_wsse_plugin.middleware.wsse.api_payment'));
         $this->assertCount(1, $handler->getMethodCalls());
+        $this->assertCount(2, $handler->getMethodCalls()[0]);
+        $this->assertEquals('push', $handler->getMethodCalls()[0][0]);
+        $this->assertCount(2, $handler->getMethodCalls()[0][1]);
+        $this->assertInstanceOf(Expression::class, $handler->getMethodCalls()[0][1][0]);
+        $this->assertEquals('wsse', $handler->getMethodCalls()[0][1][1]);
 
         $clientMiddlewareDefinition = $container->getDefinition('guzzle_bundle_wsse_plugin.middleware.wsse.api_payment');
         $this->assertCount(3, $clientMiddlewareDefinition->getArguments());
